@@ -2,4 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tangtang.ums.mapper.UmsMemberMapper">
 
+
+    <select id="selectByName" parameterType="java.lang.String" resultType="com.tangtang.ums.entity.UmsMember">
+        select username,password from ums_member where username = #{username}
+    </select>
 </mapper>

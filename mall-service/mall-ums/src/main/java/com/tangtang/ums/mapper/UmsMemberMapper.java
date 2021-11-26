@@ -2,6 +2,7 @@ package com.tangtang.ums.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.tangtang.ums.entity.UmsMember;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,4 +16,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UmsMemberMapper extends BaseMapper<UmsMember> {
 
+    UmsMember selectByName(@Param("username") String username);
 }

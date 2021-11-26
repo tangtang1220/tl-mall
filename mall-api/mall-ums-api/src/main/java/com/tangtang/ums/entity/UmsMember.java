@@ -1,8 +1,10 @@
 package com.tangtang.ums.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.context.annotation.Configuration;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -15,6 +17,9 @@ import java.time.LocalDateTime;
  * @author tangliang
  * @since 2021-11-23
  */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = false)
 @TableName("ums_member")
 public class UmsMember implements Serializable {
 
@@ -48,11 +53,6 @@ public class UmsMember implements Serializable {
     private String note;
 
     /**
-     * 创建时间
-     */
-    private LocalDateTime createTime;
-
-    /**
      * 最后登录时间
      */
     private LocalDateTime loginTime;
@@ -62,90 +62,17 @@ public class UmsMember implements Serializable {
      */
     private Integer status;
 
-    public Long getId() {
-        return id;
-    }
+    /**
+     * 创建时间
+     */
+    @TableField(fill = FieldFill.INSERT)
+    private LocalDateTime gmtCreate;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public String getUsername() {
-        return username;
-    }
+    /**
+     * 修改时间
+     */
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private LocalDateTime gmtModified;
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
-    public LocalDateTime getLoginTime() {
-        return loginTime;
-    }
-
-    public void setLoginTime(LocalDateTime loginTime) {
-        this.loginTime = loginTime;
-    }
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "UmsMember{" +
-            "id=" + id +
-            ", username=" + username +
-            ", password=" + password +
-            ", icon=" + icon +
-            ", email=" + email +
-            ", nickName=" + nickName +
-            ", note=" + note +
-            ", createTime=" + createTime +
-            ", loginTime=" + loginTime +
-            ", status=" + status +
-        "}";
-    }
 }

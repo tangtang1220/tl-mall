@@ -13,10 +13,19 @@ class UmsMemberMapperTest {
     UmsMemberMapper umsMemberMapper;
 
     @Test
-    void testInsert(){
+    void testInsert() {
         UmsMember t = new UmsMember();
-        t.setUsername("tang");
+        t.setUsername("tangaa");
         t.setStatus(0);
         umsMemberMapper.insert(t);
+    }
+
+    @Test
+    void testUpdate() {
+        UmsMember umsMember = umsMemberMapper.selectById(66);
+        if (umsMember != null) {
+            umsMember.setEmail("397632838@qq.com");
+            umsMemberMapper.updateById(umsMember);
+        }
     }
 }
