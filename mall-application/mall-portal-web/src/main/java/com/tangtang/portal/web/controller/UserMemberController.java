@@ -1,12 +1,18 @@
 package com.tangtang.portal.web.controller;
 
 
+import com.tangtang.common.base.enums.StateCodeEnum;
+import com.tangtang.common.base.result.Result;
+import com.tangtang.common.base.result.ResultWrapper;
 import com.tangtang.ums.entity.dto.UmsMemberLoginParamDTO;
 import com.tangtang.ums.entity.dto.UmsMemberRegisterParamDTO;
 import com.tangtang.ums.service.UmsMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * <p>
@@ -16,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
  * @author tangliang
  * @since 2021-11-23
  */
+@Validated
 @RestController
 @RequestMapping("/user-member")
 public class UserMemberController {
@@ -24,8 +31,9 @@ public class UserMemberController {
     UmsMemberService umsMemberService;
 
     @PostMapping("/register")
-    public String register(@RequestBody UmsMemberRegisterParamDTO umsMemberRegisterParamDTO) {
-        return umsMemberService.register(umsMemberRegisterParamDTO);
+    public Result register(@RequestBody @Valid UmsMemberRegisterParamDTO umsMemberRegisterParamDTO) {
+        String register = umsMemberService.register(umsMemberRegisterParamDTO);
+        return ResultWrapper.success(StateCodeEnum.SUCCESS);
     }
 
     @PostMapping("/login")
